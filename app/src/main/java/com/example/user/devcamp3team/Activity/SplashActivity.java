@@ -1,4 +1,4 @@
-package com.example.user.devcamp3team;
+package com.example.user.devcamp3team.Activity;
 
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -7,6 +7,9 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
+
+import com.example.user.devcamp3team.Activity.LoginActivity;
+import com.example.user.devcamp3team.R;
 
 public class SplashActivity extends AppCompatActivity {
 
