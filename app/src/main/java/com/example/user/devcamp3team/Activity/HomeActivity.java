@@ -20,8 +20,6 @@ import android.widget.ImageButton;
 
 import com.example.user.devcamp3team.R;
 
-import com.example.user.devcamp3team.R;
-
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -39,11 +37,11 @@ public class HomeActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         // 모임 추가
-        ImageButton btn_upload_moim = (ImageButton)findViewById(R.id.btn_upload_moim);
+        ImageButton btn_upload_moim = (ImageButton) findViewById(R.id.btn_upload_moim);
         btn_upload_moim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),PlusMoimActivity.class);
+                Intent intent = new Intent(getApplicationContext(), PlusMoimActivity.class);
                 startActivity(intent);
             }
         });
@@ -62,7 +60,7 @@ public class HomeActivity extends AppCompatActivity
 
         // 모임 리스트
 
-        moim_List = (RecyclerView)findViewById(R.id.moim_List);
+        moim_List = (RecyclerView) findViewById(R.id.moim_List);
         moimListAdapter = new MoimListAdapter();
         mLinearLayoutManager = new LinearLayoutManager(getApplicationContext());
         moim_List.setLayoutManager(mLinearLayoutManager);
