@@ -20,10 +20,9 @@
         </activity>
         <activity
             android:name=".Activity.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity android:name=".Activity.MainActivity"></activity>
-
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activity.MainActivity" />
+        <activity android:name=".Activity.FragmentTest" />
     </application>
 
 </manifest>
