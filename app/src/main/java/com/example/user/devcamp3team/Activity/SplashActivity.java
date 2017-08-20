@@ -23,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-
+                finish();
                 ConnectivityManager manager = (ConnectivityManager)getSystemService(CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = manager.getActiveNetworkInfo();
 
