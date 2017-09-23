@@ -23,14 +23,20 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity.PlusMoimActivity"></activity>
-        <activity android:name=".Activity.ScheduleActivity"></activity>
-        <activity android:name=".Activity.ScheduleDetailActivity"></activity>
+        <activity android:name=".Activity.PlusMoimActivity" />
+        <activity android:name=".Activity.ScheduleActivity" />
+        <activity android:name=".Activity.ScheduleDetailActivity" />
+        <activity android:name=".Activity.NotifyActivity" />
+        <activity android:name=".Activity.NotifyDetailActivity" />
+        <activity android:name=".Activity.AccountingActivity" />
+        <activity android:name=".Activity.AccountingDetailActivity"></activity>
     </application>
-
+    <!-- 지원 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 </manifest>

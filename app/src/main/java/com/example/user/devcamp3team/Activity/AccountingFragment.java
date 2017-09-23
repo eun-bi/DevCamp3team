@@ -6,15 +6,13 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.user.devcamp3team.R;
 import com.example.user.devcamp3team.Activity.dummy.DummyContent;
 import com.example.user.devcamp3team.Activity.dummy.DummyContent.DummyItem;
-
+import com.example.user.devcamp3team.R;
 
 
 /**
@@ -23,18 +21,18 @@ import com.example.user.devcamp3team.Activity.dummy.DummyContent.DummyItem;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class NotifyFragment extends Fragment {
+public class AccountingFragment extends Fragment {
 
     // TODO: Customize parameters
     private int mColumnCount = 1;
 
-    private OnListFragmentInteractionListener mListener2;
+    private OnListFragmentInteractionListener mListener3;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public NotifyFragment() {
+    public AccountingFragment() {
     }
 
     @Override
@@ -46,7 +44,7 @@ public class NotifyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_notify_item_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_accounting_item_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -57,8 +55,8 @@ public class NotifyFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            DummyContent dc = new DummyContent("공지");
-            recyclerView.setAdapter(new MyItemRecyclerViewAdapter2(dc.ITEMS, (ScheduleFragment.OnListFragmentInteractionListener) mListener2));
+            DummyContent dc = new DummyContent("회계");
+            recyclerView.setAdapter(new MyItemRecyclerViewAdapter3(dc.ITEMS, (ScheduleFragment.OnListFragmentInteractionListener) mListener3));
         }
         return view;
     }

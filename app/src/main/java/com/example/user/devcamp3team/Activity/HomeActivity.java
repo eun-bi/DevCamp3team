@@ -19,6 +19,8 @@ import android.view.MenuItem;
 
 import android.widget.ImageButton;
 
+import com.example.user.devcamp3team.R;
+
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 

@@ -1,5 +1,7 @@
 package com.example.user.devcamp3team.Activity.dummy;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,16 +23,26 @@ public class DummyContent {
     /**
      * A map of sample (dummy) items, by ID.
      */
+    public static String word;
+
+
     public static final Map<String, DummyItem> ITEM_MAP = new HashMap<String, DummyItem>();
 
     private static final int COUNT = 25;
 
-    static {
+    public DummyContent (String word){
+        ITEMS.clear();
+        this.word = word;
         // Add some sample items.
         for (int i = 1; i <= COUNT; i++) {
             addItem(createDummyItem(i));
         }
+//        Log.i("word", this.word);
     }
+//
+//    static {
+//
+//    }
 
     private static void addItem(DummyItem item) {
         ITEMS.add(item);
@@ -38,7 +50,8 @@ public class DummyContent {
     }
 
     private static DummyItem createDummyItem(int position) {
-        return new DummyItem(String.valueOf(position), "모임 " + position, makeDetails(position));
+        Log.i("pos", word+position);
+        return new DummyItem(String.valueOf(position), word  + position, makeDetails(position));
     }
 
     private static String makeDetails(int position) {

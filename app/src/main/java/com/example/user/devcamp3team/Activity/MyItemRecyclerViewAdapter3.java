@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.example.user.devcamp3team.Activity.ScheduleFragment.OnListFragmentInteractionListener;
 import com.example.user.devcamp3team.Activity.dummy.DummyContent.DummyItem;
-import com.example.user.devcamp3team.Activity.dummy.DummyContent2;
 import com.example.user.devcamp3team.R;
 
 import java.util.List;
@@ -18,12 +17,12 @@ import java.util.List;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyItemRecyclerViewAdapter2 extends RecyclerView.Adapter<MyItemRecyclerViewAdapter2.ViewHolder> {
+public class MyItemRecyclerViewAdapter3 extends RecyclerView.Adapter<MyItemRecyclerViewAdapter3.ViewHolder> {
 
     private final List<DummyItem> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyItemRecyclerViewAdapter2(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public MyItemRecyclerViewAdapter3(List<DummyItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }

@@ -10,6 +10,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -17,17 +18,26 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.user.devcamp3team.R;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
-    private MyPagerAdapter mMyPagerAdapter;
+    public static int pos ;
+    ArrayList<String> activeFragments = new ArrayList<String>();
 
+
+    ScheduleFragment scheduleFragment = new ScheduleFragment();
+    NotifyFragment notifyFragment = new NotifyFragment();
+    AccountingFragment accountingFragment = new AccountingFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +47,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
+        if (savedInstanceState == null) {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment, scheduleFragment);
+            transaction.commit();
+        }
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.main_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, ScheduleActivity.class));
+                switch (pos){
+                    case 0:
+                        startActivity(new Intent(MainActivity.this, ScheduleActivity.class));
+                        break;
+                    case 1:
+                        startActivity(new Intent(MainActivity.this, NotifyActivity.class));
+                        break;
+                    case 2:
+                        startActivity(new Intent(MainActivity.this, AccountingActivity.class));
+                        break;
+                }
+
             }
         });
 
@@ -59,31 +86,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void attachTabs() {
         mTabLayout = (TabLayout) findViewById(R.id.main_tabs);
-        mViewPager = (ViewPager) findViewById(R.id.main_viewpager);
-
-        mMyPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
-        mMyPagerAdapter.addFragment(mMyPagerAdapter.getItem(0));
-        mMyPagerAdapter.addFragment(mMyPagerAdapter.getItem(1));
-        mMyPagerAdapter.addFragment(mMyPagerAdapter.getItem(2));
-
-        mViewPager.setAdapter(mMyPagerAdapter);
-
-        mTabLayout.addTab(mTabLayout.newTab().setText("회계"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("일정"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("공지"));
-        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
 
 //        // Set TabSelectedListener
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
 
+            int pre = 0;
+
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                mViewPager.setCurrentItem(tab.getPosition());
+                changeFragment(tab.getPosition());
+                pos = tab.getPosition();
+//                mViewPager.setCurrentItem(tab.getPosition());
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
+//                pre = tab.getPosition();
             }
 
             @Override
@@ -91,9 +109,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
-//        mTabLayout.setupWithViewPager(mViewPager);
-
     }
+
+    private void changeFragment(int position) {
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        switch(position) {
+            /* Change fragment  */
+            case 0:
+                transaction.replace(R.id.fragment, scheduleFragment, "일정");
+                transaction.commit();
+                break;
+
+            case 1:
+                transaction.replace(R.id.fragment, notifyFragment, "공지");
+                transaction.commit();
+                break;
+
+            case 2:
+                transaction.replace(R.id.fragment, accountingFragment, "회계");
+                transaction.commit();
+                break;
+        }
+    }
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -130,15 +170,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         @Override
         public Fragment getItem(int position) {
-//            return mFragments.get(position);
 
             switch (position) {
                 case 0:
+                    pos = 0;
                     return new ScheduleFragment();
                 case 1:
-                    return new ScheduleFragment();
+                    pos = 1;
+                    return new NotifyFragment();
                 case 2:
-                    return new ScheduleFragment();
+                    pos = 2;
+                    return new AccountingFragment();
                 default:
                     return null;
             }
