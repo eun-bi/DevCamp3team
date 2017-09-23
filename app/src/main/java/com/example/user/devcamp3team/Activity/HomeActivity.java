@@ -1,6 +1,7 @@
 package com.example.user.devcamp3team.Activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -18,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.user.devcamp3team.R;
 
@@ -56,6 +58,16 @@ public class HomeActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View v = navigationView.getHeaderView(0);
+        TextView navTextViewName = (TextView) v.findViewById(R.id.nav_textView_name);
+        TextView navTextViewAccount = (TextView) v.findViewById(R.id.nav_textView_account);
+
+        SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+        String userAccount = pref.getString("account", "managerA");
+//        String userName = pref.getString("name", "관리자"); 
+
+        navTextViewAccount.setText(userAccount);
+//        navTextViewName.setText(userName);
         navigationView.setNavigationItemSelectedListener(this);
 
 
