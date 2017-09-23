@@ -38,8 +38,6 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 if (edit_id.length() > 0 && edit_passwd.length() > 0) {
                     loginUser(edit_id.getText().toString(), edit_passwd.getText().toString());
                 } else {
@@ -50,14 +48,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginUser(final String strId, final String strPassword) {
-        UserService userService = RetrofitService.getInstance().loginUserService();
+        UserService userService = RetrofitService.getInstance().userService();
 
         Call<Message> loginUserCall = userService.loginUser(strId, strPassword); // strId, strPassword
         Log.d("requestTest", "loginUserCall.toString() : " + loginUserCall.toString());
         loginUserCall.enqueue(new Callback<Message>() {
             @Override
             public void onResponse(Call<Message> call, Response<Message> response) {
+
                 Log.i("response", "res : " +response.toString());
+
+                if (response.body() != null && response.body().getMessage().equals("success")){
+                    Log.i("messgae", response.body().getMessage());
                 SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("login_check", "true"); //로그인 세션 저장
@@ -67,6 +69,9 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(intent);
                 finish();
+                } else {
+                    Toast.makeText(LoginActivity.this,"아이디 또는 비밀번호를 확인해주세요", Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override

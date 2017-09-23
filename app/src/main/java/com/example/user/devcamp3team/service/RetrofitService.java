@@ -23,7 +23,7 @@ public class RetrofitService {
         return instance;
     }
 
-    public UserService loginUserService() {
+    public UserService userService() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(WemoURL)
                 .addConverterFactory(GsonConverterFactory.create())
