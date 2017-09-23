@@ -30,14 +30,15 @@
                 android:layout_height="wrap_content"
                 android:ems="15"
                 android:inputType="textPersonName"
-                android:text="Name" />
+                android:text="managerA" />
 
             <EditText
                 android:id="@+id/edit_passwd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="15"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:text="123manager"/>
 
 
         </LinearLayout>
