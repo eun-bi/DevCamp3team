@@ -18,10 +18,9 @@ public interface UserService {
     @FormUrlEncoded
     @POST("/notice")
     Call<Message> postNotice(
-            @Field("account")String account,
             @Field("title") String title,
             @Field("description") String description,
-            @Field("push_flag") Boolean pushFlag, //FCM 푸시 전송 여부
-            @Field("always_flag") Boolean alwaysFlag //공지를 최상단에 유지할지 여부
+            @Field("push_flag") boolean push_flag, //FCM 푸시 전송 여부
+            @Field("always_flag") boolean always_flag //공지를 최상단에 유지할지 여부
             );
 }

@@ -2,11 +2,13 @@ package com.example.user.devcamp3team.Activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,66 +17,63 @@ import com.example.user.devcamp3team.R;
 import com.example.user.devcamp3team.Activity.dummy.DummyContent;
 import com.example.user.devcamp3team.Activity.dummy.DummyContent.DummyItem;
 
+import java.util.ArrayList;
 
 
-/**
- * A fragment representing a list of Items.
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
- * interface.
- */
 public class NotifyFragment extends Fragment {
 
-    // TODO: Customize parameters
-    private int mColumnCount = 1;
+    private ArrayList<NotifyList> notifyLists = new ArrayList<>();
+    private RecyclerView notity_List;
+    public static NotifyListAdapter notifyListAdapter;      // 구현 위주 (수정
+    private LinearLayoutManager mLinearLayoutManager;
 
-    private OnListFragmentInteractionListener mListener2;
-
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
-    public NotifyFragment() {
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Log.d("create","");
+//        notifyListAdapter = new NotifyListAdapter();
+//        mLinearLayoutManager = new LinearLayoutManager(getContext().getApplicationContext());
+//
+//        notity_List.setAdapter(notifyListAdapter);
+//        notity_List.setLayoutManager(mLinearLayoutManager);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        notifyListAdapter = new NotifyListAdapter(getContext(),notifyLists);
+        mLinearLayoutManager = new LinearLayoutManager(getContext().getApplicationContext());
+
+
+
+        notity_List.setAdapter(notifyListAdapter);
+        notity_List.setLayoutManager(mLinearLayoutManager);
+
+        notifyListAdapter.notifyDataSetChanged();
+
+//        notifyLists.clear();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_notify_item_list, container, false);
 
-        // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
-            DummyContent dc = new DummyContent("공지");
-            recyclerView.setAdapter(new MyItemRecyclerViewAdapter2(dc.ITEMS, (ScheduleFragment.OnListFragmentInteractionListener) mListener2));
+        if(savedInstanceState==null){
+            View view = inflater.inflate(R.layout.fragment_notify, container, false);
+            initView(view);
+            Log.d("fragment","new");
+
+            return view;
         }
-        return view;
+        notifyListAdapter.notifyDataSetChanged();
+
+        return super.onCreateView(inflater,container,savedInstanceState);
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+    private void initView(View view) {
+        notity_List = (RecyclerView)view.findViewById(R.id.Notify_list_recycler);
     }
 }

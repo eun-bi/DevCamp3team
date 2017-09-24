@@ -75,4 +75,31 @@ public class AccountingFragment extends Fragment {
         // TODO: Update argument type and name
         void onListFragmentInteraction(DummyItem item);
     }
+
+    /**
+     * Created by user on 2017-09-24.
+     */
+
+    public static class NotifyList {
+
+        String title;
+        String description;
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
+    }
 }
