@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class RetrofitService {
-    static final String WemoURL = "http://wemo3.2mw3dzeaxu.ap-northeast-2.elasticbeanstalk.com";
+    static final String WemoURL = "http://morning.edph2cfqj2.ap-northeast-2.elasticbeanstalk.com";
 
     private static RetrofitService instance;
 
